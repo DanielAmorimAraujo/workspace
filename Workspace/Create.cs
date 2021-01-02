@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Workspace
 {
-    public partial class Form1 : Form
+    public partial class Create : Form
     {
-        public Form1()
+        public Create()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
