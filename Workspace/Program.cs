@@ -16,7 +16,7 @@ namespace Workspace
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Create());
+            Application.Run(new CreateSpace());
         }
     }
 }

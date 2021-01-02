@@ -1,6 +1,6 @@
 ﻿namespace Workspace
 {
-    partial class Create
+    partial class CreateSpace
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // CreateSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "CreateSpace";
+            this.Text = "Create a New Workspace";
+            this.Load += new System.EventHandler(this.CreateSpace_Load);
             this.ResumeLayout(false);
 
         }
