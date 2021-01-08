@@ -12,6 +12,12 @@ namespace Workspace
 {
     public partial class CreateSpace : Form
     {
+        private OpenFileDialog addFileDialog = new OpenFileDialog();
+        private FolderBrowserDialog addFolderDialog= new FolderBrowserDialog();
+        private List<string> files = new List<string>();
+        private List<string> folders = new List<string>();
+        private List<string> links = new List<string>();
+
         public CreateSpace()
         {
             InitializeComponent();
@@ -20,6 +26,28 @@ namespace Workspace
         private void CreateSpace_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnFile_Click(object sender, EventArgs e)
+        {
+            if (addFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                files.Add(addFileDialog.FileName);
+            }
+        }
+
+        private void btnFolder_Click(object sender, EventArgs e)
+        {
+            if (addFolderDialog.ShowDialog() == DialogResult.OK)
+            {
+                folders.Add(addFolderDialog.SelectedPath);
+            }
+        }
+
+        private void btnLink_Click(object sender, EventArgs e)
+        {
+            links.Add(txtLink.Text);
+            txtLink.Clear();
         }
     }
 }
