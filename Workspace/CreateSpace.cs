@@ -16,6 +16,7 @@ namespace Workspace
         private FolderBrowserDialog addFolderDialog= new FolderBrowserDialog();
         private List<string> files = new List<string>();
         private List<string> folders = new List<string>();
+        private List<string> links = new List<string>();
 
         public CreateSpace()
         {
@@ -45,7 +46,8 @@ namespace Workspace
 
         private void btnLink_Click(object sender, EventArgs e)
         {
-
+            links.Add(txtLink.Text);
+            txtLink.Clear();
         }
     }
 }

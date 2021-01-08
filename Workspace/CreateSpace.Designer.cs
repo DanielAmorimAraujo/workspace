@@ -31,6 +31,7 @@
             this.btnFile = new System.Windows.Forms.Button();
             this.btnFolder = new System.Windows.Forms.Button();
             this.btnLink = new System.Windows.Forms.Button();
+            this.txtLink = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnFile
@@ -63,19 +64,28 @@
             this.btnLink.UseVisualStyleBackColor = true;
             this.btnLink.Click += new System.EventHandler(this.btnLink_Click);
             // 
+            // txtLink
+            // 
+            this.txtLink.Location = new System.Drawing.Point(256, 14);
+            this.txtLink.Name = "txtLink";
+            this.txtLink.Size = new System.Drawing.Size(332, 20);
+            this.txtLink.TabIndex = 3;
+            // 
             // CreateSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.txtLink);
             this.Controls.Add(this.btnLink);
             this.Controls.Add(this.btnFolder);
             this.Controls.Add(this.btnFile);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateSpace";
             this.Text = "Create a New Workspace";
             this.Load += new System.EventHandler(this.CreateSpace_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -84,6 +94,7 @@
         private System.Windows.Forms.Button btnFile;
         private System.Windows.Forms.Button btnFolder;
         private System.Windows.Forms.Button btnLink;
+        private System.Windows.Forms.TextBox txtLink;
     }
 }
 
