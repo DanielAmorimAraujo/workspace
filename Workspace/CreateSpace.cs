@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,46 @@ namespace Workspace
         {
             space.AddLink(txtLink.Text);
             txtLink.Clear();
+        }
+
+        private void btnOpenFile_Click(object sender, EventArgs e)
+        {
+            foreach (string file in space.Files)
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = file;
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
+            }
+        }
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            foreach (string folder in space.Folders)
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = folder;
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
+            }
+        }
+
+        private void btnOpenLink_Click(object sender, EventArgs e)
+        {
+            foreach (string link in space.Links)
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = link;
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
+            }
+        }
+
+        private void btnOpenItem_Click(object sender, EventArgs e)
+        {
+            btnOpenFile_Click(sender, e);
+            btnOpenFolder_Click(sender, e);
+            btnOpenLink_Click(sender, e);
         }
     }
 }
