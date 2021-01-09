@@ -47,5 +47,25 @@ namespace Workspace
             space.AddLink(txtLink.Text);
             txtLink.Clear();
         }
+
+        private void btnOpenFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOpenLink_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOpenItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
