@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Space.cs" />
     <EmbeddedResource Include="CreateSpace.resx">
       <DependentUpon>CreateSpace.cs</DependentUpon>
     </EmbeddedResource>

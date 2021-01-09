@@ -12,11 +12,9 @@ namespace Workspace
 {
     public partial class CreateSpace : Form
     {
+        private Space space = new Space();
         private OpenFileDialog addFileDialog = new OpenFileDialog();
         private FolderBrowserDialog addFolderDialog= new FolderBrowserDialog();
-        private List<string> files = new List<string>();
-        private List<string> folders = new List<string>();
-        private List<string> links = new List<string>();
 
         public CreateSpace()
         {
@@ -32,7 +30,7 @@ namespace Workspace
         {
             if (addFileDialog.ShowDialog() == DialogResult.OK)
             {
-                files.Add(addFileDialog.FileName);
+                space.AddFile(addFileDialog.FileName);
             }
         }
 
@@ -40,13 +38,13 @@ namespace Workspace
         {
             if (addFolderDialog.ShowDialog() == DialogResult.OK)
             {
-                folders.Add(addFolderDialog.SelectedPath);
+                space.AddFolder(addFolderDialog.SelectedPath);
             }
         }
 
         private void btnLink_Click(object sender, EventArgs e)
         {
-            links.Add(txtLink.Text);
+            space.AddLink(txtLink.Text);
             txtLink.Clear();
         }
     }
