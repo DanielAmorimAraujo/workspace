@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace Workspace
 {
@@ -15,11 +17,18 @@ namespace Workspace
     {
         private Space space = new Space();
         private OpenFileDialog addFileDialog = new OpenFileDialog();
-        private FolderBrowserDialog addFolderDialog= new FolderBrowserDialog();
+        private FolderBrowserDialog addFolderDialog = new FolderBrowserDialog();
+        private static string localDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Workspace");
+        private static string localDataFile = Path.Combine(localDataDir, "data.json");
 
         public CreateSpace()
         {
             InitializeComponent();
+
+            if (!Directory.Exists(localDataDir))
+            {
+                Directory.CreateDirectory(localDataDir);
+            }
         }
 
         private void CreateSpace_Load(object sender, EventArgs e)
@@ -87,6 +96,11 @@ namespace Workspace
             btnOpenFile_Click(sender, e);
             btnOpenFolder_Click(sender, e);
             btnOpenLink_Click(sender, e);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(localDataFile, JsonConvert.SerializeObject(space, Formatting.Indented));
         }
     }
 }

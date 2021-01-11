@@ -36,6 +36,7 @@
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.btnOpenLink = new System.Windows.Forms.Button();
             this.btnOpenItem = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFile
@@ -116,11 +117,22 @@
             this.btnOpenItem.UseVisualStyleBackColor = true;
             this.btnOpenItem.Click += new System.EventHandler(this.btnOpenItem_Click);
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(488, 331);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(100, 23);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // CreateSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnOpenItem);
             this.Controls.Add(this.btnOpenLink);
             this.Controls.Add(this.btnOpenFolder);
@@ -148,6 +160,7 @@
         private System.Windows.Forms.Button btnOpenFolder;
         private System.Windows.Forms.Button btnOpenLink;
         private System.Windows.Forms.Button btnOpenItem;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 
