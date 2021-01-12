@@ -29,6 +29,7 @@ namespace Workspace
             {
                 Directory.CreateDirectory(localDataDir);
             }
+            space = JsonConvert.DeserializeObject<Space>(File.ReadAllText(localDataFile));
         }
 
         private void CreateSpace_Load(object sender, EventArgs e)
