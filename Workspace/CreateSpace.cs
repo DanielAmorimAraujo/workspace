@@ -41,7 +41,40 @@ namespace Workspace
 
         private void CreateSpace_Load(object sender, EventArgs e)
         {
+            listViewItems.SmallImageList = imageListItems;
+            listViewItems.LargeImageList = imageListItems;
 
+            imageListItems.Images.Add(IconExtractor.Extract("shell32.dll", 4, true));
+
+            listViewItems.BeginUpdate();
+
+            foreach (string file in space.Files)
+            {
+                imageListItems.Images.Add(Path.GetFileName(file), Icon.ExtractAssociatedIcon(file));
+                ListViewItem item = new ListViewItem(Path.GetFileName(file));
+                item.ImageKey = Path.GetFileName(file);
+                item.Group = listViewItems.Groups[0];
+                listViewItems.Items.Add(item);
+            }
+
+            foreach (string folder in space.Folders)
+            {
+                ListViewItem item = new ListViewItem(folder);
+                item.ImageIndex = 0;
+                item.Group = listViewItems.Groups[1];
+                listViewItems.Items.Add(item);
+            }
+
+            foreach (string link in space.Links)
+            {
+                ListViewItem item = new ListViewItem(link);
+                item.Group = listViewItems.Groups[2];
+                listViewItems.Items.Add(item);
+            }
+
+            listViewItems.Columns[0].Width = -1;
+
+            listViewItems.EndUpdate();
         }
 
         private void btnFile_Click(object sender, EventArgs e)
