@@ -84,6 +84,8 @@ namespace Workspace
             listViewItems.Columns[0].Width = -1;
 
             listViewItems.EndUpdate();
+
+            listViewItems.SelectedIndexChanged += new System.EventHandler(this.listViewItems_SelectedIndexChanged);
         }
 
         private void btnFile_Click(object sender, EventArgs e)
@@ -222,5 +224,18 @@ namespace Workspace
 
             listViewItems.EndUpdate();
         }
+
+        private void listViewItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewItems.SelectedItems.Count == 0 && btnRemove.Enabled)
+            {
+                btnRemove.Enabled = false;
+            }
+            else if (listViewItems.SelectedItems.Count != 0 && !btnRemove.Enabled)
+            {
+                btnRemove.Enabled = true;
+            }
+        }
+
     }
 }

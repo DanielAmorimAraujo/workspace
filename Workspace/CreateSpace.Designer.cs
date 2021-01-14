@@ -151,7 +151,7 @@
             listViewGroup3});
             this.listViewItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewItems.HideSelection = false;
-            this.listViewItems.Location = new System.Drawing.Point(12, 39);
+            this.listViewItems.Location = new System.Drawing.Point(12, 40);
             this.listViewItems.Margin = new System.Windows.Forms.Padding(2);
             this.listViewItems.Name = "listViewItems";
             this.listViewItems.Size = new System.Drawing.Size(579, 286);
@@ -171,6 +171,7 @@
             // 
             // btnRemove
             // 
+            this.btnRemove.Enabled = false;
             this.btnRemove.Location = new System.Drawing.Point(491, 12);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(100, 23);
