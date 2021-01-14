@@ -44,6 +44,7 @@
             this.listViewItems = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageListItems = new System.Windows.Forms.ImageList(this.components);
+            this.btnRemove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFile
@@ -80,7 +81,7 @@
             // 
             this.txtLink.Location = new System.Drawing.Point(330, 14);
             this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(261, 20);
+            this.txtLink.Size = new System.Drawing.Size(155, 20);
             this.txtLink.TabIndex = 3;
             // 
             // btnOpenFile
@@ -126,7 +127,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(490, 331);
+            this.btnSave.Location = new System.Drawing.Point(491, 331);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 23);
             this.btnSave.TabIndex = 8;
@@ -150,7 +151,7 @@
             listViewGroup3});
             this.listViewItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewItems.HideSelection = false;
-            this.listViewItems.Location = new System.Drawing.Point(12, 40);
+            this.listViewItems.Location = new System.Drawing.Point(12, 39);
             this.listViewItems.Margin = new System.Windows.Forms.Padding(2);
             this.listViewItems.Name = "listViewItems";
             this.listViewItems.Size = new System.Drawing.Size(579, 286);
@@ -168,11 +169,22 @@
             this.imageListItems.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListItems.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(491, 12);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(100, 23);
+            this.btnRemove.TabIndex = 10;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // CreateSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.listViewItems);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnOpenItem);
@@ -206,6 +218,7 @@
         private System.Windows.Forms.ListView listViewItems;
         private System.Windows.Forms.ImageList imageListItems;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Button btnRemove;
     }
 }
 
