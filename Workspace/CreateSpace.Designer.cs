@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Files", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Folders", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Links", System.Windows.Forms.HorizontalAlignment.Left);
             this.btnFile = new System.Windows.Forms.Button();
             this.btnFolder = new System.Windows.Forms.Button();
             this.btnLink = new System.Windows.Forms.Button();
@@ -37,6 +41,9 @@
             this.btnOpenLink = new System.Windows.Forms.Button();
             this.btnOpenItem = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.listViewItems = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageListItems = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // btnFile
@@ -71,9 +78,9 @@
             // 
             // txtLink
             // 
-            this.txtLink.Location = new System.Drawing.Point(330, 12);
+            this.txtLink.Location = new System.Drawing.Point(330, 14);
             this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(258, 20);
+            this.txtLink.Size = new System.Drawing.Size(261, 20);
             this.txtLink.TabIndex = 3;
             // 
             // btnOpenFile
@@ -119,7 +126,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(488, 331);
+            this.btnSave.Location = new System.Drawing.Point(490, 331);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 23);
             this.btnSave.TabIndex = 8;
@@ -127,11 +134,46 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // listViewItems
+            // 
+            this.listViewItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            listViewGroup1.Header = "Files";
+            listViewGroup1.Name = "listViewGroupFile";
+            listViewGroup2.Header = "Folders";
+            listViewGroup2.Name = "listViewGroupFolder";
+            listViewGroup3.Header = "Links";
+            listViewGroup3.Name = "listViewGroupLink";
+            this.listViewItems.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3});
+            this.listViewItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.listViewItems.HideSelection = false;
+            this.listViewItems.Location = new System.Drawing.Point(12, 40);
+            this.listViewItems.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewItems.Name = "listViewItems";
+            this.listViewItems.Size = new System.Drawing.Size(579, 286);
+            this.listViewItems.TabIndex = 9;
+            this.listViewItems.UseCompatibleStateImageBehavior = false;
+            this.listViewItems.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 0;
+            // 
+            // imageListItems
+            // 
+            this.imageListItems.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListItems.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageListItems.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // CreateSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.listViewItems);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnOpenItem);
             this.Controls.Add(this.btnOpenLink);
@@ -161,6 +203,9 @@
         private System.Windows.Forms.Button btnOpenLink;
         private System.Windows.Forms.Button btnOpenItem;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ListView listViewItems;
+        private System.Windows.Forms.ImageList imageListItems;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }
 
