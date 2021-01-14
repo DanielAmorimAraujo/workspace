@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 
 namespace Workspace
@@ -47,6 +48,11 @@ namespace Workspace
 
             imageListItems.Images.Add(IconExtractor.Extract("shell32.dll", 4, true));
 
+            FileStream blankFile = File.Create(Path.Combine(localDataDir, "blank.html"));
+            imageListItems.Images.Add(Icon.ExtractAssociatedIcon(Path.Combine(localDataDir, "blank.html")));
+            blankFile.Close();
+            File.Delete(Path.Combine(localDataDir, "blank.html"));
+
             listViewItems.BeginUpdate();
 
             foreach (string file in space.Files)
@@ -69,6 +75,7 @@ namespace Workspace
             foreach (string link in space.Links)
             {
                 ListViewItem item = new ListViewItem(link);
+                item.ImageIndex = 1;
                 item.Group = listViewItems.Groups[2];
                 listViewItems.Items.Add(item);
             }
@@ -134,6 +141,7 @@ namespace Workspace
             listViewItems.BeginUpdate();
 
             ListViewItem item = new ListViewItem(link);
+            item.ImageIndex = 1;
             item.Group = listViewItems.Groups[2];
             listViewItems.Items.Add(item);
 
