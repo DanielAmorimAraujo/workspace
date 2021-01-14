@@ -59,6 +59,7 @@ namespace Workspace
             {
                 imageListItems.Images.Add(Path.GetFileName(file), Icon.ExtractAssociatedIcon(file));
                 ListViewItem item = new ListViewItem(Path.GetFileName(file));
+                item.Name = file;
                 item.ImageKey = Path.GetFileName(file);
                 item.Group = listViewItems.Groups[0];
                 listViewItems.Items.Add(item);
@@ -83,6 +84,8 @@ namespace Workspace
             listViewItems.Columns[0].Width = -1;
 
             listViewItems.EndUpdate();
+
+            listViewItems.SelectedIndexChanged += new System.EventHandler(this.listViewItems_SelectedIndexChanged);
         }
 
         private void btnFile_Click(object sender, EventArgs e)
@@ -196,5 +199,43 @@ namespace Workspace
         {
             File.WriteAllText(localDataFile, JsonConvert.SerializeObject(space, Formatting.Indented));
         }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            listViewItems.BeginUpdate();
+
+            foreach (ListViewItem item in listViewItems.SelectedItems)
+            {
+                if (item.Group.Name == "listViewGroupFile")
+                {
+                    space.RemoveFile(item.Name);
+
+                }
+                else if (item.Group.Name == "listViewGroupFolder")
+                {
+                    space.RemoveFolder(item.Text);
+                }
+                else if (item.Group.Name == "listViewGroupLink")
+                {
+                    space.RemoveLink(item.Text);
+                }
+                listViewItems.Items.Remove(item);
+            }
+
+            listViewItems.EndUpdate();
+        }
+
+        private void listViewItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewItems.SelectedItems.Count == 0 && btnRemove.Enabled)
+            {
+                btnRemove.Enabled = false;
+            }
+            else if (listViewItems.SelectedItems.Count != 0 && !btnRemove.Enabled)
+            {
+                btnRemove.Enabled = true;
+            }
+        }
+
     }
 }
