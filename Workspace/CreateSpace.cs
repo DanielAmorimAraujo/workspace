@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -79,23 +80,67 @@ namespace Workspace
 
         private void btnFile_Click(object sender, EventArgs e)
         {
-            if (addFileDialog.ShowDialog() == DialogResult.OK)
+            if (addFileDialog.ShowDialog() != DialogResult.OK)
             {
-                space.AddFile(addFileDialog.FileName);
+                return;
             }
+
+            string file = addFileDialog.FileName;
+
+            space.AddFile(file);
+
+            listViewItems.BeginUpdate();
+
+            imageListItems.Images.Add(Path.GetFileName(file), Icon.ExtractAssociatedIcon(file));
+            ListViewItem item = new ListViewItem(Path.GetFileName(file));
+            item.ImageKey = Path.GetFileName(file);
+            item.Group = listViewItems.Groups[0];
+            listViewItems.Items.Add(item);
+
+            listViewItems.Columns[0].Width = -1;
+
+            listViewItems.EndUpdate();
         }
 
         private void btnFolder_Click(object sender, EventArgs e)
         {
-            if (addFolderDialog.ShowDialog() == DialogResult.OK)
+            if (addFolderDialog.ShowDialog() != DialogResult.OK)
             {
-                space.AddFolder(addFolderDialog.SelectedPath);
+                return;
             }
+
+            string folder = addFolderDialog.SelectedPath;
+
+            space.AddFolder(folder);
+
+            listViewItems.BeginUpdate();
+
+            ListViewItem item = new ListViewItem(folder);
+            item.ImageIndex = 0;
+            item.Group = listViewItems.Groups[1];
+            listViewItems.Items.Add(item);
+
+            listViewItems.Columns[0].Width = -1;
+
+            listViewItems.EndUpdate();
         }
 
         private void btnLink_Click(object sender, EventArgs e)
         {
-            space.AddLink(txtLink.Text);
+            string link = txtLink.Text;
+
+            space.AddLink(link);
+
+            listViewItems.BeginUpdate();
+
+            ListViewItem item = new ListViewItem(link);
+            item.Group = listViewItems.Groups[2];
+            listViewItems.Items.Add(item);
+
+            listViewItems.Columns[0].Width = -1;
+
+            listViewItems.EndUpdate();
+
             txtLink.Clear();
         }
 
