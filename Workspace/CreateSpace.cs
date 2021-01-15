@@ -139,20 +139,30 @@ namespace Workspace
         {
             string link = txtLink.Text;
 
-            space.AddLink(link);
+            Uri uri;
+            if (Uri.TryCreate(link, UriKind.RelativeOrAbsolute, out uri) && uri.IsWellFormedOriginalString())
+            {
+                space.AddLink(link);
 
-            listViewItems.BeginUpdate();
+                listViewItems.BeginUpdate();
 
-            ListViewItem item = new ListViewItem(link);
-            item.ImageIndex = 1;
-            item.Group = listViewItems.Groups[2];
-            listViewItems.Items.Add(item);
+                ListViewItem item = new ListViewItem(link);
+                item.ImageIndex = 1;
+                item.Group = listViewItems.Groups[2];
+                listViewItems.Items.Add(item);
 
-            listViewItems.Columns[0].Width = -1;
+                listViewItems.Columns[0].Width = -1;
 
-            listViewItems.EndUpdate();
+                listViewItems.EndUpdate();
 
-            txtLink.Clear();
+                errorProviderLink.Clear();
+
+                txtLink.Clear();
+            }
+            else
+            {
+                errorProviderLink.SetError(txtLink, "Invalid URL");
+            }
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
