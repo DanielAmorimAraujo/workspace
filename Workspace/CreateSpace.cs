@@ -141,7 +141,7 @@ namespace Workspace
             string link = txtLink.Text;
 
             Uri uri;
-            if (Uri.TryCreate(link, UriKind.RelativeOrAbsolute, out uri) && uri.IsWellFormedOriginalString())
+            if (Uri.TryCreate(link, UriKind.Absolute, out uri) && uri.IsWellFormedOriginalString())
             {
                 space.AddLink(link);
 
