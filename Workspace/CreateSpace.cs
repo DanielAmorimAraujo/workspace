@@ -85,7 +85,9 @@ namespace Workspace
 
             listViewItems.EndUpdate();
 
-            listViewItems.SelectedIndexChanged += new System.EventHandler(this.listViewItems_SelectedIndexChanged);
+            listViewItems.SelectedIndexChanged += new EventHandler(this.listViewItems_SelectedIndexChanged);
+            txtLink.TextChanged += new EventHandler(this.txtLink_TextChanged);
+            txtLink.KeyDown += new KeyEventHandler(this.txtLink_KeyDown);
         }
 
         private void btnFile_Click(object sender, EventArgs e)
@@ -139,20 +141,30 @@ namespace Workspace
         {
             string link = txtLink.Text;
 
-            space.AddLink(link);
+            Uri uri;
+            if (Uri.TryCreate(link, UriKind.Absolute, out uri) && uri.IsWellFormedOriginalString())
+            {
+                space.AddLink(link);
 
-            listViewItems.BeginUpdate();
+                listViewItems.BeginUpdate();
 
-            ListViewItem item = new ListViewItem(link);
-            item.ImageIndex = 1;
-            item.Group = listViewItems.Groups[2];
-            listViewItems.Items.Add(item);
+                ListViewItem item = new ListViewItem(link);
+                item.ImageIndex = 1;
+                item.Group = listViewItems.Groups[2];
+                listViewItems.Items.Add(item);
 
-            listViewItems.Columns[0].Width = -1;
+                listViewItems.Columns[0].Width = -1;
 
-            listViewItems.EndUpdate();
+                listViewItems.EndUpdate();
 
-            txtLink.Clear();
+                errorProviderLink.Clear();
+
+                txtLink.Clear();
+            }
+            else
+            {
+                errorProviderLink.SetError(txtLink, "Invalid URL");
+            }
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
@@ -234,6 +246,26 @@ namespace Workspace
             else if (listViewItems.SelectedItems.Count != 0 && !btnRemove.Enabled)
             {
                 btnRemove.Enabled = true;
+            }
+        }
+
+        private void txtLink_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtLink.Text) && btnLink.Enabled)
+            {
+                btnLink.Enabled = false;
+            }
+            else if (!string.IsNullOrWhiteSpace(txtLink.Text) && !btnLink.Enabled)
+            {
+                btnLink.Enabled = true;
+            }
+        }
+
+        private void txtLink_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                btnLink_Click(sender, e);
             }
         }
 

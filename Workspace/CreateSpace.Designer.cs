@@ -45,6 +45,8 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageListItems = new System.Windows.Forms.ImageList(this.components);
             this.btnRemove = new System.Windows.Forms.Button();
+            this.errorProviderLink = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderLink)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFile
@@ -69,6 +71,7 @@
             // 
             // btnLink
             // 
+            this.btnLink.Enabled = false;
             this.btnLink.Location = new System.Drawing.Point(224, 12);
             this.btnLink.Name = "btnLink";
             this.btnLink.Size = new System.Drawing.Size(100, 23);
@@ -81,7 +84,7 @@
             // 
             this.txtLink.Location = new System.Drawing.Point(330, 14);
             this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(155, 20);
+            this.txtLink.Size = new System.Drawing.Size(138, 20);
             this.txtLink.TabIndex = 3;
             // 
             // btnOpenFile
@@ -180,6 +183,11 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // errorProviderLink
+            // 
+            this.errorProviderLink.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProviderLink.ContainerControl = this;
+            // 
             // CreateSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,6 +208,7 @@
             this.Name = "CreateSpace";
             this.Text = "Create a New Workspace";
             this.Load += new System.EventHandler(this.CreateSpace_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderLink)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,6 +229,7 @@
         private System.Windows.Forms.ImageList imageListItems;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.ErrorProvider errorProviderLink;
     }
 }
 
