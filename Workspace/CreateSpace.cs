@@ -86,6 +86,7 @@ namespace Workspace
             listViewItems.EndUpdate();
 
             listViewItems.SelectedIndexChanged += new System.EventHandler(this.listViewItems_SelectedIndexChanged);
+            txtLink.TextChanged += new System.EventHandler(this.txtLink_TextChanged);
         }
 
         private void btnFile_Click(object sender, EventArgs e)
@@ -244,6 +245,18 @@ namespace Workspace
             else if (listViewItems.SelectedItems.Count != 0 && !btnRemove.Enabled)
             {
                 btnRemove.Enabled = true;
+            }
+        }
+
+        private void txtLink_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtLink.Text) && btnLink.Enabled)
+            {
+                btnLink.Enabled = false;
+            }
+            else if (!string.IsNullOrWhiteSpace(txtLink.Text) && !btnLink.Enabled)
+            {
+                btnLink.Enabled = true;
             }
         }
 

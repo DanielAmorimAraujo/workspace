@@ -71,6 +71,7 @@
             // 
             // btnLink
             // 
+            this.btnLink.Enabled = false;
             this.btnLink.Location = new System.Drawing.Point(224, 12);
             this.btnLink.Name = "btnLink";
             this.btnLink.Size = new System.Drawing.Size(100, 23);
