@@ -1,70 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="Space.cs" company="github.com/DanielAmorimAraujo">
+// Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
+// </copyright>
 
 namespace Workspace
 {
-    class Space
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Manages a set of <see cref="Item"/>.
+    /// </summary>
+    internal class Space
     {
-        private List<string> files = new List<string>();
-        private List<string> folders = new List<string>();
-        private List<string> links = new List<string>();
+        private readonly List<File> files = new List<File>();
+        private readonly List<Folder> folders = new List<Folder>();
+        private readonly List<Link> links = new List<Link>();
 
-        public List<string> Files
+        /// <summary>
+        /// Gets <see cref="files"/>.
+        /// </summary>
+        public List<File> Files => this.files;
+
+        /// <summary>
+        /// Gets <see cref="folders"/>.
+        /// </summary>
+        public List<Folder> Folders => this.folders;
+
+        /// <summary>
+        /// Gets <see cref="links"/>.
+        /// </summary>
+        public List<Link> Links => this.links;
+
+        /// <summary>
+        /// Adds an <see cref="Item"/> to our <see cref="Space"/>.
+        /// </summary>
+        /// <param name="item">The <see cref="Item"/> being added.</param>
+        public void AddItem(Item item)
         {
-            get { return files; }
+            switch (item.Type)
+            {
+                case Item.ItemType.File:
+                    this.files.Add((File)item);
+                    break;
+
+                case Item.ItemType.Folder:
+                    this.folders.Add((Folder)item);
+                    break;
+
+                case Item.ItemType.Link:
+                    this.links.Add((Link)item);
+                    break;
+            }
         }
 
-        public List<string> Folders
+        /// <summary>
+        /// Removes an <see cref="Item"/> from our <see cref="Space"/>.
+        /// </summary>
+        /// <param name="item">The <see cref="Item"/> being removed.</param>
+        public void RemoveItem(Item item)
         {
-            get { return folders; }
-        }
+            switch (item.Type)
+            {
+                case Item.ItemType.File:
+                    this.files.Remove((File)item);
+                    break;
 
-        public List<string> Links
-        {
-            get { return links; }
-        }
+                case Item.ItemType.Folder:
+                    this.folders.Remove((Folder)item);
+                    break;
 
-        private void AddItem(ref List<string> list, string item)
-        {
-            list.Add(item);
-        }
-
-        private void RemoveItem(ref List<string> list, string item)
-        {
-            list.Remove(item);
-        }
-
-        public void AddFile(string file)
-        {
-            AddItem(ref files, file);
-        }
-
-        public void AddFolder(string folder)
-        {
-            AddItem(ref folders, folder);
-        }
-
-        public void AddLink(string link)
-        {
-            AddItem(ref links, link);
-        }
-
-        public void RemoveFile(string file)
-        {
-            RemoveItem(ref files, file);
-        }
-
-        public void RemoveFolder(string folder)
-        {
-            RemoveItem(ref folders, folder);
-        }
-
-        public void RemoveLink(string link)
-        {
-            RemoveItem(ref links, link);
+                case Item.ItemType.Link:
+                    this.links.Remove((Link)item);
+                    break;
+            }
         }
     }
 }
