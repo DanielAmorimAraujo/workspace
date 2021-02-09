@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Files", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Folders", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Links", System.Windows.Forms.HorizontalAlignment.Left);
             this.btnFile = new System.Windows.Forms.Button();
             this.btnFolder = new System.Windows.Forms.Button();
             this.btnLink = new System.Windows.Forms.Button();
@@ -55,9 +52,8 @@
             this.btnFile.Name = "btnFile";
             this.btnFile.Size = new System.Drawing.Size(100, 23);
             this.btnFile.TabIndex = 0;
-            this.btnFile.Text = "Add File";
             this.btnFile.UseVisualStyleBackColor = true;
-            this.btnFile.Click += new System.EventHandler(this.btnFile_Click);
+            this.btnFile.Click += new System.EventHandler(this.BtnFile_Click);
             // 
             // btnFolder
             // 
@@ -65,9 +61,8 @@
             this.btnFolder.Name = "btnFolder";
             this.btnFolder.Size = new System.Drawing.Size(100, 23);
             this.btnFolder.TabIndex = 1;
-            this.btnFolder.Text = "Add Folder";
             this.btnFolder.UseVisualStyleBackColor = true;
-            this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
+            this.btnFolder.Click += new System.EventHandler(this.BtnFolder_Click);
             // 
             // btnLink
             // 
@@ -76,9 +71,8 @@
             this.btnLink.Name = "btnLink";
             this.btnLink.Size = new System.Drawing.Size(100, 23);
             this.btnLink.TabIndex = 2;
-            this.btnLink.Text = "Add Link";
             this.btnLink.UseVisualStyleBackColor = true;
-            this.btnLink.Click += new System.EventHandler(this.btnLink_Click);
+            this.btnLink.Click += new System.EventHandler(this.BtnLink_Click);
             // 
             // txtLink
             // 
@@ -93,9 +87,8 @@
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(100, 23);
             this.btnOpenFile.TabIndex = 4;
-            this.btnOpenFile.Text = "Open Files";
             this.btnOpenFile.UseVisualStyleBackColor = true;
-            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
+            this.btnOpenFile.Click += new System.EventHandler(this.BtnOpenFile_Click);
             // 
             // btnOpenFolder
             // 
@@ -104,9 +97,8 @@
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(100, 23);
             this.btnOpenFolder.TabIndex = 5;
-            this.btnOpenFolder.Text = "Open Folders";
             this.btnOpenFolder.UseVisualStyleBackColor = true;
-            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
+            this.btnOpenFolder.Click += new System.EventHandler(this.BtnOpenFolder_Click);
             // 
             // btnOpenLink
             // 
@@ -114,9 +106,8 @@
             this.btnOpenLink.Name = "btnOpenLink";
             this.btnOpenLink.Size = new System.Drawing.Size(100, 23);
             this.btnOpenLink.TabIndex = 6;
-            this.btnOpenLink.Text = "Open Links";
             this.btnOpenLink.UseVisualStyleBackColor = true;
-            this.btnOpenLink.Click += new System.EventHandler(this.btnOpenLink_Click);
+            this.btnOpenLink.Click += new System.EventHandler(this.BtnOpenLink_Click);
             // 
             // btnOpenItem
             // 
@@ -126,7 +117,7 @@
             this.btnOpenItem.TabIndex = 7;
             this.btnOpenItem.Text = "Open All";
             this.btnOpenItem.UseVisualStyleBackColor = true;
-            this.btnOpenItem.Click += new System.EventHandler(this.btnOpenItem_Click);
+            this.btnOpenItem.Click += new System.EventHandler(this.BtnOpenItem_Click);
             // 
             // btnSave
             // 
@@ -136,22 +127,12 @@
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // listViewItems
             // 
             this.listViewItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            listViewGroup1.Header = "Files";
-            listViewGroup1.Name = "listViewGroupFile";
-            listViewGroup2.Header = "Folders";
-            listViewGroup2.Name = "listViewGroupFolder";
-            listViewGroup3.Header = "Links";
-            listViewGroup3.Name = "listViewGroupLink";
-            this.listViewItems.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3});
             this.listViewItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewItems.HideSelection = false;
             this.listViewItems.Location = new System.Drawing.Point(12, 40);
@@ -181,7 +162,7 @@
             this.btnRemove.TabIndex = 10;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // errorProviderLink
             // 
