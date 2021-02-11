@@ -32,13 +32,15 @@ namespace Workspace
             this.InitializeComponent();
 
             // building form
-            this.btnFile.Text = "Add " + File.GetTitle();
-            this.btnFolder.Text = "Add " + Folder.GetTitle();
-            this.btnLink.Text = "Add " + Link.GetTitle();
+            this.splitButtonAdd.DropDown = true;
 
-            this.btnOpenFile.Text = "Open " + File.GetTitle(true);
-            this.btnOpenFolder.Text = "Open " + Folder.GetTitle(true);
-            this.btnOpenLink.Text = "Open " + Link.GetTitle(true);
+            this.contextMenuStripAdd.Items.Add(new ToolStripMenuItem("Add " + File.GetTitle(), null, this.FileToolStripMenuItemAdd_Click));
+            this.contextMenuStripAdd.Items.Add(new ToolStripMenuItem("Add " + Folder.GetTitle(), null, this.FolderToolStripMenuItemAdd_Click));
+            this.contextMenuStripAdd.Items.Add(new ToolStripMenuItem("Add " + Link.GetTitle(), null, this.LinkToolStripMenuItemAdd_Click));
+
+            this.contextMenuStripOpen.Items.Add(new ToolStripMenuItem("Open " + File.GetTitle(), null, this.FileToolStripMenuItemOpen_Click));
+            this.contextMenuStripOpen.Items.Add(new ToolStripMenuItem("Open " + Folder.GetTitle(), null, this.FolderToolStripMenuItemOpen_Click));
+            this.contextMenuStripOpen.Items.Add(new ToolStripMenuItem("Open " + Link.GetTitle(), null, this.LinkToolStripMenuItemOpen_Click));
 
             this.listViewItems.Groups.AddRange(new ListViewGroup[] { this.fileGroup, this.folderGroup, this.linkGroup });
             this.listViewItems.SmallImageList = this.imageListItems;
@@ -74,7 +76,6 @@ namespace Workspace
 
             // event handlers
             this.listViewItems.SelectedIndexChanged += new EventHandler(this.ListViewItems_SelectedIndexChanged);
-            this.txtLink.TextChanged += new EventHandler(this.TxtLink_TextChanged);
             this.txtLink.KeyDown += new KeyEventHandler(this.TxtLink_KeyDown);
         }
 
@@ -82,7 +83,7 @@ namespace Workspace
         {
         }
 
-        private void BtnFile_Click(object sender, EventArgs e)
+        private void FileToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
             if (this.fileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -92,7 +93,7 @@ namespace Workspace
             }
         }
 
-        private void BtnFolder_Click(object sender, EventArgs e)
+        private void FolderToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
             if (this.folderDialog.ShowDialog() == DialogResult.OK)
             {
@@ -102,7 +103,7 @@ namespace Workspace
             }
         }
 
-        private void BtnLink_Click(object sender, EventArgs e)
+        private void LinkToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
             if (Uri.TryCreate(this.txtLink.Text, UriKind.Absolute, out Uri uri) && uri.IsWellFormedOriginalString())
             {
@@ -119,7 +120,7 @@ namespace Workspace
             }
         }
 
-        private void BtnOpenFile_Click(object sender, EventArgs e)
+        private void FileToolStripMenuItemOpen_Click(object sender, EventArgs e)
         {
             foreach (File file in this.space.Files)
             {
@@ -127,7 +128,7 @@ namespace Workspace
             }
         }
 
-        private void BtnOpenFolder_Click(object sender, EventArgs e)
+        private void FolderToolStripMenuItemOpen_Click(object sender, EventArgs e)
         {
             foreach (Folder folder in this.space.Folders)
             {
@@ -135,7 +136,7 @@ namespace Workspace
             }
         }
 
-        private void BtnOpenLink_Click(object sender, EventArgs e)
+        private void LinkToolStripMenuItemOpen_Click(object sender, EventArgs e)
         {
             foreach (Link link in this.space.Links)
             {
@@ -143,11 +144,11 @@ namespace Workspace
             }
         }
 
-        private void BtnOpenItem_Click(object sender, EventArgs e)
+        private void SplitButtonOpen_Click(object sender, EventArgs e)
         {
-            this.BtnOpenFile_Click(sender, e);
-            this.BtnOpenFolder_Click(sender, e);
-            this.BtnOpenLink_Click(sender, e);
+            this.FileToolStripMenuItemOpen_Click(sender, e);
+            this.FolderToolStripMenuItemOpen_Click(sender, e);
+            this.LinkToolStripMenuItemOpen_Click(sender, e);
         }
 
         private void BtnRemove_Click(object sender, EventArgs e)
@@ -250,16 +251,11 @@ namespace Workspace
             this.btnRemove.Enabled = this.listViewItems.SelectedItems.Count > 0;
         }
 
-        private void TxtLink_TextChanged(object sender, EventArgs e)
-        {
-            this.btnLink.Enabled = !string.IsNullOrWhiteSpace(this.txtLink.Text);
-        }
-
         private void TxtLink_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
             {
-                this.BtnLink_Click(sender, e);
+                this.LinkToolStripMenuItemAdd_Click(sender, e);
             }
         }
     }
