@@ -9,6 +9,7 @@ namespace Workspace
     using System.IO;
     using System.Windows.Forms;
     using Newtonsoft.Json;
+    using Workspace.Forms;
 
     /// <summary>
     /// Form for creating and editing a new <see cref="Space"/>.
@@ -76,7 +77,6 @@ namespace Workspace
 
             // event handlers
             this.listViewItems.SelectedIndexChanged += new EventHandler(this.ListViewItems_SelectedIndexChanged);
-            this.txtLink.KeyDown += new KeyEventHandler(this.TxtLink_KeyDown);
         }
 
         private void CreateSpace_Load(object sender, EventArgs e)
@@ -105,18 +105,17 @@ namespace Workspace
 
         private void LinkToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
-            if (Uri.TryCreate(this.txtLink.Text, UriKind.Absolute, out Uri uri) && uri.IsWellFormedOriginalString())
+            using (EnterLink formEnterLink = new EnterLink())
             {
-                Link link = new Link(this.txtLink.Text);
-                this.space.AddItem(link);
-                this.AddListViewItem(link);
+                formEnterLink.StartPosition = FormStartPosition.CenterParent;
 
-                this.errorProviderLink.Clear();
-                this.txtLink.Clear();
-            }
-            else
-            {
-                this.errorProviderLink.SetError(this.txtLink, "Invalid URL");
+                DialogResult result = formEnterLink.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    Link link = new Link(formEnterLink.LinkValue);
+                    this.space.AddItem(link);
+                    this.AddListViewItem(link);
+                }
             }
         }
 
@@ -249,14 +248,6 @@ namespace Workspace
         private void ListViewItems_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.btnRemove.Enabled = this.listViewItems.SelectedItems.Count > 0;
-        }
-
-        private void TxtLink_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                this.LinkToolStripMenuItemAdd_Click(sender, e);
-            }
         }
     }
 }

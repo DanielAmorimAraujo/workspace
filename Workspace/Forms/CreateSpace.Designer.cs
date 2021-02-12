@@ -29,26 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtLink = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.listViewItems = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageListItems = new System.Windows.Forms.ImageList(this.components);
             this.btnRemove = new System.Windows.Forms.Button();
-            this.errorProviderLink = new System.Windows.Forms.ErrorProvider(this.components);
             this.contextMenuStripAdd = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStripOpen = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitButtonAdd = new wyDay.Controls.SplitButton();
             this.splitButtonOpen = new wyDay.Controls.SplitButton();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderLink)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtLink
-            // 
-            this.txtLink.Location = new System.Drawing.Point(224, 332);
-            this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(139, 20);
-            this.txtLink.TabIndex = 2;
             // 
             // btnSave
             // 
@@ -95,11 +85,6 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
-            // errorProviderLink
-            // 
-            this.errorProviderLink.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProviderLink.ContainerControl = this;
-            // 
             // contextMenuStripAdd
             // 
             this.contextMenuStripAdd.Name = "contextMenuStripAdd";
@@ -144,26 +129,22 @@
             this.Controls.Add(this.splitButtonOpen);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtLink);
             this.Controls.Add(this.listViewItems);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateSpace";
             this.Text = "Create a New Workspace";
             this.Load += new System.EventHandler(this.CreateSpace_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderLink)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtLink;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ListView listViewItems;
         private System.Windows.Forms.ImageList imageListItems;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.ErrorProvider errorProviderLink;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripAdd;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripOpen;
         private wyDay.Controls.SplitButton splitButtonOpen;
