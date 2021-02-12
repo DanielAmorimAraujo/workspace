@@ -42,6 +42,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Location = new System.Drawing.Point(488, 329);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 25);
@@ -52,6 +53,9 @@
             // 
             // listViewItems
             // 
+            this.listViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.listViewItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -76,6 +80,7 @@
             // 
             // btnRemove
             // 
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.Enabled = false;
             this.btnRemove.Location = new System.Drawing.Point(382, 329);
             this.btnRemove.Name = "btnRemove";
@@ -97,6 +102,7 @@
             // 
             // splitButtonAdd
             // 
+            this.splitButtonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.splitButtonAdd.AutoSize = true;
             this.splitButtonAdd.ContextMenuStrip = this.contextMenuStripAdd;
             this.splitButtonAdd.Location = new System.Drawing.Point(12, 329);
@@ -109,6 +115,7 @@
             // 
             // splitButtonOpen
             // 
+            this.splitButtonOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.splitButtonOpen.AutoSize = true;
             this.splitButtonOpen.ContextMenuStrip = this.contextMenuStripOpen;
             this.splitButtonOpen.Location = new System.Drawing.Point(118, 329);
@@ -131,6 +138,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.listViewItems);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(458, 200);
             this.Name = "CreateSpace";
             this.Text = "Create a New Workspace";
             this.Load += new System.EventHandler(this.CreateSpace_Load);
