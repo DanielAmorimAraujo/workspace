@@ -32,7 +32,7 @@ namespace Workspace
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CreateSpace());
+            Application.Run(new HomeForm());
         }
     }
 }
