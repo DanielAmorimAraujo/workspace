@@ -90,7 +90,7 @@ namespace Workspace.Forms
             this.MinimizeBox = false;
             this.Name = "EnterLink";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "Enter Link";
+            this.Text = " ";
             ((System.ComponentModel.ISupportInitialize)(this.errProviderLink)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

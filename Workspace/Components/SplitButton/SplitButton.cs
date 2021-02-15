@@ -187,7 +187,10 @@ namespace wyDay.Controls
                 {
                     ShowContextMenuStrip();
                 }
-
+                else if (dropDown && (kevent.KeyCode.Equals(Keys.Enter) || kevent.KeyCode.Equals(Keys.Space)) && kevent.Modifiers == Keys.None)
+                {
+                    ShowContextMenuStrip();
+                }
                 else if (kevent.KeyCode.Equals(Keys.Space) && kevent.Modifiers == Keys.None)
                 {
                     State = PushButtonState.Pressed;
