@@ -29,117 +29,42 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnFile = new System.Windows.Forms.Button();
-            this.btnFolder = new System.Windows.Forms.Button();
-            this.btnLink = new System.Windows.Forms.Button();
-            this.txtLink = new System.Windows.Forms.TextBox();
-            this.btnOpenFile = new System.Windows.Forms.Button();
-            this.btnOpenFolder = new System.Windows.Forms.Button();
-            this.btnOpenLink = new System.Windows.Forms.Button();
-            this.btnOpenItem = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.listViewItems = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageListItems = new System.Windows.Forms.ImageList(this.components);
             this.btnRemove = new System.Windows.Forms.Button();
-            this.errorProviderLink = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderLink)).BeginInit();
+            this.contextMenuStripAdd = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStripOpen = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.splitButtonAdd = new wyDay.Controls.SplitButton();
+            this.splitButtonOpen = new wyDay.Controls.SplitButton();
             this.SuspendLayout();
-            // 
-            // btnFile
-            // 
-            this.btnFile.Location = new System.Drawing.Point(12, 12);
-            this.btnFile.Name = "btnFile";
-            this.btnFile.Size = new System.Drawing.Size(100, 23);
-            this.btnFile.TabIndex = 0;
-            this.btnFile.UseVisualStyleBackColor = true;
-            this.btnFile.Click += new System.EventHandler(this.BtnFile_Click);
-            // 
-            // btnFolder
-            // 
-            this.btnFolder.Location = new System.Drawing.Point(118, 12);
-            this.btnFolder.Name = "btnFolder";
-            this.btnFolder.Size = new System.Drawing.Size(100, 23);
-            this.btnFolder.TabIndex = 1;
-            this.btnFolder.UseVisualStyleBackColor = true;
-            this.btnFolder.Click += new System.EventHandler(this.BtnFolder_Click);
-            // 
-            // btnLink
-            // 
-            this.btnLink.Enabled = false;
-            this.btnLink.Location = new System.Drawing.Point(224, 12);
-            this.btnLink.Name = "btnLink";
-            this.btnLink.Size = new System.Drawing.Size(100, 23);
-            this.btnLink.TabIndex = 2;
-            this.btnLink.UseVisualStyleBackColor = true;
-            this.btnLink.Click += new System.EventHandler(this.BtnLink_Click);
-            // 
-            // txtLink
-            // 
-            this.txtLink.Location = new System.Drawing.Point(330, 14);
-            this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(138, 20);
-            this.txtLink.TabIndex = 3;
-            // 
-            // btnOpenFile
-            // 
-            this.btnOpenFile.Location = new System.Drawing.Point(12, 331);
-            this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.Size = new System.Drawing.Size(100, 23);
-            this.btnOpenFile.TabIndex = 4;
-            this.btnOpenFile.UseVisualStyleBackColor = true;
-            this.btnOpenFile.Click += new System.EventHandler(this.BtnOpenFile_Click);
-            // 
-            // btnOpenFolder
-            // 
-            this.btnOpenFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnOpenFolder.Location = new System.Drawing.Point(118, 331);
-            this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(100, 23);
-            this.btnOpenFolder.TabIndex = 5;
-            this.btnOpenFolder.UseVisualStyleBackColor = true;
-            this.btnOpenFolder.Click += new System.EventHandler(this.BtnOpenFolder_Click);
-            // 
-            // btnOpenLink
-            // 
-            this.btnOpenLink.Location = new System.Drawing.Point(224, 331);
-            this.btnOpenLink.Name = "btnOpenLink";
-            this.btnOpenLink.Size = new System.Drawing.Size(100, 23);
-            this.btnOpenLink.TabIndex = 6;
-            this.btnOpenLink.UseVisualStyleBackColor = true;
-            this.btnOpenLink.Click += new System.EventHandler(this.BtnOpenLink_Click);
-            // 
-            // btnOpenItem
-            // 
-            this.btnOpenItem.Location = new System.Drawing.Point(330, 331);
-            this.btnOpenItem.Name = "btnOpenItem";
-            this.btnOpenItem.Size = new System.Drawing.Size(100, 23);
-            this.btnOpenItem.TabIndex = 7;
-            this.btnOpenItem.Text = "Open All";
-            this.btnOpenItem.UseVisualStyleBackColor = true;
-            this.btnOpenItem.Click += new System.EventHandler(this.BtnOpenItem_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(491, 331);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(488, 329);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 23);
-            this.btnSave.TabIndex = 8;
+            this.btnSave.Size = new System.Drawing.Size(100, 25);
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // listViewItems
             // 
+            this.listViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.listViewItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewItems.HideSelection = false;
-            this.listViewItems.Location = new System.Drawing.Point(12, 40);
+            this.listViewItems.Location = new System.Drawing.Point(11, 11);
             this.listViewItems.Margin = new System.Windows.Forms.Padding(2);
             this.listViewItems.Name = "listViewItems";
-            this.listViewItems.Size = new System.Drawing.Size(579, 286);
-            this.listViewItems.TabIndex = 9;
+            this.listViewItems.Size = new System.Drawing.Size(578, 313);
+            this.listViewItems.TabIndex = 5;
             this.listViewItems.UseCompatibleStateImageBehavior = false;
             this.listViewItems.View = System.Windows.Forms.View.Details;
             // 
@@ -155,62 +80,83 @@
             // 
             // btnRemove
             // 
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.Enabled = false;
-            this.btnRemove.Location = new System.Drawing.Point(491, 12);
+            this.btnRemove.Location = new System.Drawing.Point(382, 329);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(100, 23);
-            this.btnRemove.TabIndex = 10;
+            this.btnRemove.Size = new System.Drawing.Size(100, 25);
+            this.btnRemove.TabIndex = 3;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
-            // errorProviderLink
+            // contextMenuStripAdd
             // 
-            this.errorProviderLink.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProviderLink.ContainerControl = this;
+            this.contextMenuStripAdd.Name = "contextMenuStripAdd";
+            this.contextMenuStripAdd.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextMenuStripOpen
+            // 
+            this.contextMenuStripOpen.Name = "contextMenuStripOpen";
+            this.contextMenuStripOpen.Size = new System.Drawing.Size(61, 4);
+            // 
+            // splitButtonAdd
+            // 
+            this.splitButtonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.splitButtonAdd.AutoSize = true;
+            this.splitButtonAdd.ContextMenuStrip = this.contextMenuStripAdd;
+            this.splitButtonAdd.Location = new System.Drawing.Point(12, 329);
+            this.splitButtonAdd.Name = "splitButtonAdd";
+            this.splitButtonAdd.Size = new System.Drawing.Size(100, 25);
+            this.splitButtonAdd.SplitMenuStrip = this.contextMenuStripAdd;
+            this.splitButtonAdd.TabIndex = 0;
+            this.splitButtonAdd.Text = "Add";
+            this.splitButtonAdd.UseVisualStyleBackColor = true;
+            // 
+            // splitButtonOpen
+            // 
+            this.splitButtonOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.splitButtonOpen.AutoSize = true;
+            this.splitButtonOpen.ContextMenuStrip = this.contextMenuStripOpen;
+            this.splitButtonOpen.Location = new System.Drawing.Point(118, 329);
+            this.splitButtonOpen.Name = "splitButtonOpen";
+            this.splitButtonOpen.Size = new System.Drawing.Size(100, 25);
+            this.splitButtonOpen.SplitMenuStrip = this.contextMenuStripOpen;
+            this.splitButtonOpen.TabIndex = 1;
+            this.splitButtonOpen.Text = "Open All";
+            this.splitButtonOpen.UseVisualStyleBackColor = true;
+            this.splitButtonOpen.Click += new System.EventHandler(this.SplitButtonOpen_Click);
             // 
             // CreateSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.splitButtonAdd);
+            this.Controls.Add(this.splitButtonOpen);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.listViewItems);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnOpenItem);
-            this.Controls.Add(this.btnOpenLink);
-            this.Controls.Add(this.btnOpenFolder);
-            this.Controls.Add(this.btnOpenFile);
-            this.Controls.Add(this.txtLink);
-            this.Controls.Add(this.btnLink);
-            this.Controls.Add(this.btnFolder);
-            this.Controls.Add(this.btnFile);
+            this.Controls.Add(this.listViewItems);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(458, 200);
             this.Name = "CreateSpace";
             this.Text = "Create a New Workspace";
             this.Load += new System.EventHandler(this.CreateSpace_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderLink)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnFile;
-        private System.Windows.Forms.Button btnFolder;
-        private System.Windows.Forms.Button btnLink;
-        private System.Windows.Forms.TextBox txtLink;
-        private System.Windows.Forms.Button btnOpenFile;
-        private System.Windows.Forms.Button btnOpenFolder;
-        private System.Windows.Forms.Button btnOpenLink;
-        private System.Windows.Forms.Button btnOpenItem;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ListView listViewItems;
         private System.Windows.Forms.ImageList imageListItems;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.ErrorProvider errorProviderLink;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripAdd;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripOpen;
+        private wyDay.Controls.SplitButton splitButtonOpen;
+        private wyDay.Controls.SplitButton splitButtonAdd;
     }
 }
 
