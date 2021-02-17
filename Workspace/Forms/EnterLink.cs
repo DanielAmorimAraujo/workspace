@@ -1,4 +1,8 @@
-﻿namespace Workspace.Forms
+﻿// <copyright file="EnterLink.cs" company="github.com/DanielAmorimAraujo">
+// Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
+// </copyright>
+
+namespace Workspace.Forms
 {
     using System;
     using System.Windows.Forms;
@@ -23,7 +27,7 @@
         }
 
         /// <summary>
-        /// Gets <see cref="returnValue"/>.
+        /// Gets <see cref="linkValue"/>.
         /// </summary>
         public string LinkValue => this.linkValue;
 

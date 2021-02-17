@@ -5,15 +5,53 @@
 namespace Workspace
 {
     using System.Collections.Generic;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Manages a set of <see cref="Item"/>.
     /// </summary>
-    internal class Space
+    public class Space
     {
+        private static int counter = 0;
+        private readonly int id;
+        private readonly string name;
         private readonly List<File> files = new List<File>();
         private readonly List<Folder> folders = new List<Folder>();
         private readonly List<Link> links = new List<Link>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Space"/> class.
+        /// </summary>
+        /// <param name="name">The name of the space.</param>
+        [JsonConstructor]
+        public Space(string name)
+        {
+            this.id = GetId();
+            this.name = name;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Space"/> class.
+        /// </summary>
+        /// <param name="other">The space being copied.</param>
+        public Space(Space other)
+        {
+            this.id = other.id;
+            this.name = other.name;
+            this.files = new List<File>(other.files);
+            this.folders = new List<Folder>(other.folders);
+            this.links = new List<Link>(other.links);
+        }
+
+        /// <summary>
+        /// Gets <see cref="id"/>.
+        /// </summary>
+        public int Id => this.id;
+
+        /// <summary>
+        /// Gets <see cref="name"/>.
+        /// </summary>
+        public string Name => this.name;
 
         /// <summary>
         /// Gets <see cref="files"/>.
@@ -29,6 +67,15 @@ namespace Workspace
         /// Gets <see cref="links"/>.
         /// </summary>
         public List<Link> Links => this.links;
+
+        /// <summary>
+        /// Gets a new ID.
+        /// </summary>
+        /// <returns>The ID.</returns>
+        public static int GetId()
+        {
+            return ++counter;
+        }
 
         /// <summary>
         /// Adds an <see cref="Item"/> to our <see cref="Space"/>.

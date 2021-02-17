@@ -16,7 +16,7 @@ namespace Workspace
     /// </summary>
     public partial class CreateSpace : Form
     {
-        private readonly Space space = new Space();
+        private readonly Space space;
         private readonly OpenFileDialog fileDialog = new OpenFileDialog();
         private readonly FolderBrowserDialog folderDialog = new FolderBrowserDialog();
         private readonly int folderImageIndex;
@@ -28,9 +28,12 @@ namespace Workspace
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSpace"/> class.
         /// </summary>
-        public CreateSpace()
+        /// <param name="space">The <see cref="Space"/> being displayed.</param>
+        public CreateSpace(Space space)
         {
             this.InitializeComponent();
+
+            this.space = space;
 
             // building form
             this.splitButtonAdd.DropDown = true;
@@ -78,6 +81,11 @@ namespace Workspace
             // event handlers
             this.listViewItems.SelectedIndexChanged += new EventHandler(this.ListViewItems_SelectedIndexChanged);
         }
+
+        /// <summary>
+        /// Gets <see cref="space"/>.
+        /// </summary>
+        public Space ReturnSpace => this.space;
 
         private void CreateSpace_Load(object sender, EventArgs e)
         {
@@ -154,13 +162,29 @@ namespace Workspace
         {
             foreach (ListViewItem listViewItem in this.listViewItems.SelectedItems)
             {
+                switch (((Item)listViewItem.Tag).Type)
+                {
+                    case Item.ItemType.File:
+                        this.space.RemoveItem((File)listViewItem.Tag);
+                        break;
+
+                    case Item.ItemType.Folder:
+                        this.space.RemoveItem((Folder)listViewItem.Tag);
+                        break;
+
+                    case Item.ItemType.Link:
+                        this.space.RemoveItem((Link)listViewItem.Tag);
+                        break;
+                }
+
                 this.RemoveListViewItem(listViewItem);
             }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            System.IO.File.WriteAllText(Constants.LocalDataPath, JsonConvert.SerializeObject(this.space, Formatting.Indented));
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void AddListViewItem(Item item)
@@ -223,23 +247,7 @@ namespace Workspace
         {
             this.listViewItems.BeginUpdate();
 
-            switch (((Item)listViewItem.Tag).Type)
-            {
-                case Item.ItemType.File:
-                    this.space.RemoveItem((File)listViewItem.Tag);
-                    break;
-
-                case Item.ItemType.Folder:
-                    this.space.RemoveItem((Folder)listViewItem.Tag);
-                    break;
-
-                case Item.ItemType.Link:
-                    this.space.RemoveItem((Link)listViewItem.Tag);
-                    break;
-            }
-
             this.listViewItems.Items.Remove(listViewItem);
-
             this.listViewItems.Columns[0].Width = -1;
 
             this.listViewItems.EndUpdate();

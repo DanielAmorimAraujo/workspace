@@ -9,7 +9,7 @@ namespace Workspace
     /// <summary>
     /// Represents a file item.
     /// </summary>
-    internal class File : Item
+    public class File : Item
     {
         private readonly int id;
         private readonly string name;
@@ -21,7 +21,7 @@ namespace Workspace
         /// <param name="path">The path to the file.</param>
         public File(string path)
         {
-            this.id = this.GetId();
+            this.id = GetId();
             this.name = System.IO.Path.GetFileName(path);
             this.path = path;
         }
