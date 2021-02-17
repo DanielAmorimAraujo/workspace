@@ -45,15 +45,15 @@ namespace Workspace
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             Space space = (Space)this.listViewSpaces.SelectedItems[0].Tag;
-            using (CreateSpace createSpaceForm = new CreateSpace(new Space(space)))
+            using (SpaceForm spaceForm = new SpaceForm(new Space(space)))
             {
-                createSpaceForm.StartPosition = FormStartPosition.CenterParent;
+                spaceForm.StartPosition = FormStartPosition.CenterParent;
 
-                DialogResult result = createSpaceForm.ShowDialog();
+                DialogResult result = spaceForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    this.spaces[this.spaces.FindIndex(ind => ind.Equals(space))] = createSpaceForm.ReturnSpace;
-                    this.listViewSpaces.SelectedItems[0].Tag = createSpaceForm.ReturnSpace;
+                    this.spaces[this.spaces.FindIndex(ind => ind.Equals(space))] = spaceForm.ReturnSpace;
+                    this.listViewSpaces.SelectedItems[0].Tag = spaceForm.ReturnSpace;
                 }
             }
         }

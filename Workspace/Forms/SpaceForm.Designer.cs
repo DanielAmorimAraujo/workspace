@@ -1,6 +1,6 @@
 ﻿namespace Workspace
 {
-    partial class CreateSpace
+    partial class SpaceForm
     {
         /// <summary>
         /// Required designer variable.
@@ -127,7 +127,7 @@
             this.splitButtonOpen.UseVisualStyleBackColor = true;
             this.splitButtonOpen.Click += new System.EventHandler(this.SplitButtonOpen_Click);
             // 
-            // CreateSpace
+            // SpaceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -139,9 +139,8 @@
             this.Controls.Add(this.listViewItems);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(458, 200);
-            this.Name = "CreateSpace";
-            this.Text = "Create a New Workspace";
-            this.Load += new System.EventHandler(this.CreateSpace_Load);
+            this.Name = "SpaceForm";
+            this.Load += new System.EventHandler(this.SpaceForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

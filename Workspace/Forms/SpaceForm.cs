@@ -1,4 +1,4 @@
-﻿// <copyright file="CreateSpace.cs" company="github.com/DanielAmorimAraujo">
+﻿// <copyright file="SpaceForm.cs" company="github.com/DanielAmorimAraujo">
 // Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
 // </copyright>
 
@@ -12,9 +12,9 @@ namespace Workspace
     using Workspace.Forms;
 
     /// <summary>
-    /// Form for creating and editing a new <see cref="Space"/>.
+    /// Form for viewing a <see cref="Space"/>.
     /// </summary>
-    public partial class CreateSpace : Form
+    public partial class SpaceForm : Form
     {
         private readonly Space space;
         private readonly OpenFileDialog fileDialog = new OpenFileDialog();
@@ -26,16 +26,18 @@ namespace Workspace
         private readonly ListViewGroup linkGroup = new ListViewGroup(Link.GetTitle(true));
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSpace"/> class.
+        /// Initializes a new instance of the <see cref="SpaceForm"/> class.
         /// </summary>
         /// <param name="space">The <see cref="Space"/> being displayed.</param>
-        public CreateSpace(Space space)
+        public SpaceForm(Space space)
         {
             this.InitializeComponent();
 
             this.space = space;
 
             // building form
+            this.Text = (!string.IsNullOrWhiteSpace(space.Name) ? space.Name : "Unnamed") + " Space";
+
             this.splitButtonAdd.DropDown = true;
 
             this.contextMenuStripAdd.Items.Add(new ToolStripMenuItem("Add " + File.GetTitle(), null, this.FileToolStripMenuItemAdd_Click));
@@ -87,7 +89,7 @@ namespace Workspace
         /// </summary>
         public Space ReturnSpace => this.space;
 
-        private void CreateSpace_Load(object sender, EventArgs e)
+        private void SpaceForm_Load(object sender, EventArgs e)
         {
         }
 

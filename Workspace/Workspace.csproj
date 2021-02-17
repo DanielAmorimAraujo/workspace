@@ -59,11 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\CreateSpace.cs">
+    <Compile Include="Forms\SpaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CreateSpace.Designer.cs">
-      <DependentUpon>CreateSpace.cs</DependentUpon>
+    <Compile Include="Forms\SpaceForm.Designer.cs">
+      <DependentUpon>SpaceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EnterLink.cs">
       <SubType>Form</SubType>
@@ -86,8 +86,8 @@
     <Compile Include="Models\Space\Space.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\IconExtractor.cs" />
-    <EmbeddedResource Include="Forms\CreateSpace.resx">
-      <DependentUpon>CreateSpace.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SpaceForm.resx">
+      <DependentUpon>SpaceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EnterLink.resx">
       <DependentUpon>EnterLink.cs</DependentUpon>
