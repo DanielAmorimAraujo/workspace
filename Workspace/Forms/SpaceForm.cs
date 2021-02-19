@@ -122,10 +122,33 @@ namespace Workspace
                 DialogResult result = formEnterLink.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    Link link = new Link(formEnterLink.LinkValue);
+                    Link link = new Link(formEnterLink.ReturnLink);
                     this.space.AddItem(link);
                     this.AddListViewItem(link);
                 }
+            }
+        }
+
+        private void BtnRemove_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem listViewItem in this.listViewItems.SelectedItems)
+            {
+                switch (((Item)listViewItem.Tag).Type)
+                {
+                    case Item.ItemType.File:
+                        this.space.RemoveItem((File)listViewItem.Tag);
+                        break;
+
+                    case Item.ItemType.Folder:
+                        this.space.RemoveItem((Folder)listViewItem.Tag);
+                        break;
+
+                    case Item.ItemType.Link:
+                        this.space.RemoveItem((Link)listViewItem.Tag);
+                        break;
+                }
+
+                this.RemoveListViewItem(listViewItem);
             }
         }
 
@@ -160,27 +183,10 @@ namespace Workspace
             this.LinkToolStripMenuItemOpen_Click(sender, e);
         }
 
-        private void BtnRemove_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem listViewItem in this.listViewItems.SelectedItems)
-            {
-                switch (((Item)listViewItem.Tag).Type)
-                {
-                    case Item.ItemType.File:
-                        this.space.RemoveItem((File)listViewItem.Tag);
-                        break;
-
-                    case Item.ItemType.Folder:
-                        this.space.RemoveItem((Folder)listViewItem.Tag);
-                        break;
-
-                    case Item.ItemType.Link:
-                        this.space.RemoveItem((Link)listViewItem.Tag);
-                        break;
-                }
-
-                this.RemoveListViewItem(listViewItem);
-            }
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

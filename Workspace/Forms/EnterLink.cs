@@ -12,7 +12,7 @@ namespace Workspace.Forms
     /// </summary>
     public partial class EnterLink : Form
     {
-        private string linkValue;
+        private string link;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EnterLink"/> class.
@@ -27,9 +27,9 @@ namespace Workspace.Forms
         }
 
         /// <summary>
-        /// Gets <see cref="linkValue"/>.
+        /// Gets link entered in the form.
         /// </summary>
-        public string LinkValue => this.linkValue;
+        public string ReturnLink => this.link;
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
@@ -41,7 +41,7 @@ namespace Workspace.Forms
         {
             if (Uri.TryCreate(this.txtBoxLink.Text, UriKind.Absolute, out Uri uri) && uri.IsWellFormedOriginalString())
             {
-                this.linkValue = this.txtBoxLink.Text;
+                this.link = this.txtBoxLink.Text;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

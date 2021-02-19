@@ -8,6 +8,7 @@ namespace Workspace
     using System.Collections.Generic;
     using System.Windows.Forms;
     using Newtonsoft.Json;
+    using Workspace.Forms;
 
     /// <summary>
     /// Form for viewing saved <see cref="Space"/>s.
@@ -70,6 +71,27 @@ namespace Workspace
 
         private void BtnCreate_Click(object sender, EventArgs e)
         {
+            using (EnterNameForm enterNameForm = new EnterNameForm())
+            {
+                enterNameForm.StartPosition = FormStartPosition.CenterParent;
+
+                DialogResult result = enterNameForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    Space space = new Space(enterNameForm.ReturnName);
+                    using (SpaceForm spaceForm = new SpaceForm(new Space(space)))
+                    {
+                        spaceForm.StartPosition = FormStartPosition.CenterParent;
+
+                        result = spaceForm.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            this.spaces.Add(spaceForm.ReturnSpace);
+                            this.AddListViewSpace(spaceForm.ReturnSpace);
+                        }
+                    }
+                }
+            }
         }
 
         private void AddListViewSpace(Space space)
