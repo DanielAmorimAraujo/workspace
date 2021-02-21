@@ -1,19 +1,24 @@
-﻿namespace Workspace.Forms
+﻿// <copyright file="EnterLinkForm.cs" company="github.com/DanielAmorimAraujo">
+// Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
+// </copyright>
+
+namespace Workspace.Forms
 {
     using System;
     using System.Windows.Forms;
+    using Workspace.Models;
 
     /// <summary>
     /// Form to enter in a <see cref="Link.Url"/>.
     /// </summary>
-    public partial class EnterLink : Form
+    public partial class EnterLinkForm : Form
     {
-        private string linkValue;
+        private string link;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EnterLink"/> class.
+        /// Initializes a new instance of the <see cref="EnterLinkForm"/> class.
         /// </summary>
-        public EnterLink()
+        public EnterLinkForm()
         {
             this.InitializeComponent();
 
@@ -23,9 +28,9 @@
         }
 
         /// <summary>
-        /// Gets <see cref="returnValue"/>.
+        /// Gets link entered in the form.
         /// </summary>
-        public string LinkValue => this.linkValue;
+        public string ReturnLink => this.link;
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
@@ -37,7 +42,7 @@
         {
             if (Uri.TryCreate(this.txtBoxLink.Text, UriKind.Absolute, out Uri uri) && uri.IsWellFormedOriginalString())
             {
-                this.linkValue = this.txtBoxLink.Text;
+                this.link = this.txtBoxLink.Text;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

@@ -7,6 +7,8 @@ namespace Workspace
     using System;
     using System.IO;
     using System.Windows.Forms;
+    using Workspace.Forms;
+    using Workspace.Utils;
 
     /// <summary>
     /// Entry point of the program.
@@ -32,7 +34,7 @@ namespace Workspace
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CreateSpace());
+            Application.Run(new HomeForm());
         }
     }
 }

@@ -2,7 +2,7 @@
 // Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
 // </copyright>
 
-namespace Workspace
+namespace Workspace.Models
 {
     /// <summary>
     /// Abstract class for any <see cref="ItemType"/>.
@@ -43,17 +43,17 @@ namespace Workspace
         public abstract ItemType Type { get; }
 
         /// <summary>
-        /// Runs the <see cref="Item"/>.
-        /// </summary>
-        public abstract void Run();
-
-        /// <summary>
         /// Gets a new ID.
         /// </summary>
         /// <returns>The ID.</returns>
-        public int GetId()
+        public static int GetId()
         {
             return ++counter;
         }
+
+        /// <summary>
+        /// Runs the <see cref="Item"/>.
+        /// </summary>
+        public abstract void Run();
     }
 }

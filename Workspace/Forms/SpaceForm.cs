@@ -1,22 +1,22 @@
-﻿// <copyright file="CreateSpace.cs" company="github.com/DanielAmorimAraujo">
+﻿// <copyright file="SpaceForm.cs" company="github.com/DanielAmorimAraujo">
 // Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
 // </copyright>
 
-namespace Workspace
+namespace Workspace.Forms
 {
     using System;
     using System.Drawing;
-    using System.IO;
     using System.Windows.Forms;
     using Newtonsoft.Json;
-    using Workspace.Forms;
+    using Workspace.Models;
+    using Workspace.Utils;
 
     /// <summary>
-    /// Form for creating and editing a new <see cref="Space"/>.
+    /// Form for viewing a <see cref="Space"/>.
     /// </summary>
-    public partial class CreateSpace : Form
+    public partial class SpaceForm : Form
     {
-        private readonly Space space = new Space();
+        private readonly Space space;
         private readonly OpenFileDialog fileDialog = new OpenFileDialog();
         private readonly FolderBrowserDialog folderDialog = new FolderBrowserDialog();
         private readonly int folderImageIndex;
@@ -26,13 +26,18 @@ namespace Workspace
         private readonly ListViewGroup linkGroup = new ListViewGroup(Link.GetTitle(true));
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSpace"/> class.
+        /// Initializes a new instance of the <see cref="SpaceForm"/> class.
         /// </summary>
-        public CreateSpace()
+        /// <param name="space">The <see cref="Space"/> being displayed.</param>
+        public SpaceForm(Space space)
         {
             this.InitializeComponent();
 
+            this.space = space;
+
             // building form
+            this.Text = (!string.IsNullOrWhiteSpace(space.Name) ? space.Name : "Unnamed") + " Space";
+
             this.splitButtonAdd.DropDown = true;
 
             this.contextMenuStripAdd.Items.Add(new ToolStripMenuItem("Add " + File.GetTitle(), null, this.FileToolStripMenuItemAdd_Click));
@@ -50,8 +55,8 @@ namespace Workspace
             this.imageListItems.Images.Add(IconExtractor.Extract("shell32.dll", 4, true));
             this.folderImageIndex = 0;
 
-            string blankFileName = Path.Combine(Constants.LocalDataDirectory, "blank.html");
-            FileStream blankFile = System.IO.File.Create(blankFileName);
+            string blankFileName = System.IO.Path.Combine(Constants.LocalDataDirectory, "blank.html");
+            System.IO.FileStream blankFile = System.IO.File.Create(blankFileName);
             this.imageListItems.Images.Add(Icon.ExtractAssociatedIcon(blankFileName));
             this.linkImageIndex = 1;
             blankFile.Close();
@@ -79,9 +84,10 @@ namespace Workspace
             this.listViewItems.SelectedIndexChanged += new EventHandler(this.ListViewItems_SelectedIndexChanged);
         }
 
-        private void CreateSpace_Load(object sender, EventArgs e)
-        {
-        }
+        /// <summary>
+        /// Gets <see cref="space"/>.
+        /// </summary>
+        public Space ReturnSpace => this.space;
 
         private void FileToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
@@ -105,62 +111,73 @@ namespace Workspace
 
         private void LinkToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
-            using (EnterLink formEnterLink = new EnterLink())
+            using (EnterLinkForm enterLinkForm = new EnterLinkForm())
             {
-                formEnterLink.StartPosition = FormStartPosition.CenterParent;
+                enterLinkForm.StartPosition = FormStartPosition.CenterParent;
 
-                DialogResult result = formEnterLink.ShowDialog();
+                DialogResult result = enterLinkForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    Link link = new Link(formEnterLink.LinkValue);
+                    Link link = new Link(enterLinkForm.ReturnLink);
                     this.space.AddItem(link);
                     this.AddListViewItem(link);
                 }
             }
         }
 
-        private void FileToolStripMenuItemOpen_Click(object sender, EventArgs e)
-        {
-            foreach (File file in this.space.Files)
-            {
-                file.Run();
-            }
-        }
-
-        private void FolderToolStripMenuItemOpen_Click(object sender, EventArgs e)
-        {
-            foreach (Folder folder in this.space.Folders)
-            {
-                folder.Run();
-            }
-        }
-
-        private void LinkToolStripMenuItemOpen_Click(object sender, EventArgs e)
-        {
-            foreach (Link link in this.space.Links)
-            {
-                link.Run();
-            }
-        }
-
-        private void SplitButtonOpen_Click(object sender, EventArgs e)
-        {
-            this.FileToolStripMenuItemOpen_Click(sender, e);
-            this.FolderToolStripMenuItemOpen_Click(sender, e);
-            this.LinkToolStripMenuItemOpen_Click(sender, e);
-        }
-
         private void BtnRemove_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem listViewItem in this.listViewItems.SelectedItems)
             {
+                switch (((Item)listViewItem.Tag).Type)
+                {
+                    case Item.ItemType.File:
+                        this.space.RemoveItem((File)listViewItem.Tag);
+                        break;
+
+                    case Item.ItemType.Folder:
+                        this.space.RemoveItem((Folder)listViewItem.Tag);
+                        break;
+
+                    case Item.ItemType.Link:
+                        this.space.RemoveItem((Link)listViewItem.Tag);
+                        break;
+                }
+
                 this.RemoveListViewItem(listViewItem);
             }
         }
 
+        private void FileToolStripMenuItemOpen_Click(object sender, EventArgs e)
+        {
+            this.space.Run(Item.ItemType.File);
+        }
+
+        private void FolderToolStripMenuItemOpen_Click(object sender, EventArgs e)
+        {
+            this.space.Run(Item.ItemType.Folder);
+        }
+
+        private void LinkToolStripMenuItemOpen_Click(object sender, EventArgs e)
+        {
+            this.space.Run(Item.ItemType.Link);
+        }
+
+        private void SplitButtonOpen_Click(object sender, EventArgs e)
+        {
+            this.space.Run();
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            System.IO.File.WriteAllText(Constants.LocalDataPath, JsonConvert.SerializeObject(this.space, Formatting.Indented));
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void AddListViewItem(Item item)
@@ -223,23 +240,7 @@ namespace Workspace
         {
             this.listViewItems.BeginUpdate();
 
-            switch (((Item)listViewItem.Tag).Type)
-            {
-                case Item.ItemType.File:
-                    this.space.RemoveItem((File)listViewItem.Tag);
-                    break;
-
-                case Item.ItemType.Folder:
-                    this.space.RemoveItem((Folder)listViewItem.Tag);
-                    break;
-
-                case Item.ItemType.Link:
-                    this.space.RemoveItem((Link)listViewItem.Tag);
-                    break;
-            }
-
             this.listViewItems.Items.Remove(listViewItem);
-
             this.listViewItems.Columns[0].Width = -1;
 
             this.listViewItems.EndUpdate();

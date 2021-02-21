@@ -1,6 +1,6 @@
-﻿namespace Workspace
+﻿namespace Workspace.Forms
 {
-    partial class CreateSpace
+    partial class SpaceForm
     {
         /// <summary>
         /// Required designer variable.
@@ -38,33 +38,34 @@
             this.contextMenuStripOpen = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitButtonAdd = new wyDay.Controls.SplitButton();
             this.splitButtonOpen = new wyDay.Controls.SplitButton();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(488, 329);
+            this.btnSave.Location = new System.Drawing.Point(542, 329);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 25);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // listViewItems
             // 
-            this.listViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.listViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.listViewItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewItems.HideSelection = false;
-            this.listViewItems.Location = new System.Drawing.Point(11, 11);
+            this.listViewItems.Location = new System.Drawing.Point(12, 12);
             this.listViewItems.Margin = new System.Windows.Forms.Padding(2);
             this.listViewItems.Name = "listViewItems";
-            this.listViewItems.Size = new System.Drawing.Size(578, 313);
-            this.listViewItems.TabIndex = 5;
+            this.listViewItems.Size = new System.Drawing.Size(630, 312);
+            this.listViewItems.TabIndex = 0;
             this.listViewItems.UseCompatibleStateImageBehavior = false;
             this.listViewItems.View = System.Windows.Forms.View.Details;
             // 
@@ -80,12 +81,12 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemove.Enabled = false;
-            this.btnRemove.Location = new System.Drawing.Point(382, 329);
+            this.btnRemove.Location = new System.Drawing.Point(118, 329);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(100, 25);
-            this.btnRemove.TabIndex = 3;
+            this.btnRemove.TabIndex = 2;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
@@ -109,7 +110,7 @@
             this.splitButtonAdd.Name = "splitButtonAdd";
             this.splitButtonAdd.Size = new System.Drawing.Size(100, 25);
             this.splitButtonAdd.SplitMenuStrip = this.contextMenuStripAdd;
-            this.splitButtonAdd.TabIndex = 0;
+            this.splitButtonAdd.TabIndex = 1;
             this.splitButtonAdd.Text = "Add";
             this.splitButtonAdd.UseVisualStyleBackColor = true;
             // 
@@ -118,30 +119,40 @@
             this.splitButtonOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.splitButtonOpen.AutoSize = true;
             this.splitButtonOpen.ContextMenuStrip = this.contextMenuStripOpen;
-            this.splitButtonOpen.Location = new System.Drawing.Point(118, 329);
+            this.splitButtonOpen.Location = new System.Drawing.Point(224, 329);
             this.splitButtonOpen.Name = "splitButtonOpen";
             this.splitButtonOpen.Size = new System.Drawing.Size(100, 25);
             this.splitButtonOpen.SplitMenuStrip = this.contextMenuStripOpen;
-            this.splitButtonOpen.TabIndex = 1;
+            this.splitButtonOpen.TabIndex = 3;
             this.splitButtonOpen.Text = "Open All";
             this.splitButtonOpen.UseVisualStyleBackColor = true;
             this.splitButtonOpen.Click += new System.EventHandler(this.SplitButtonOpen_Click);
             // 
-            // CreateSpace
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(436, 329);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(100, 25);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // SpaceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(654, 366);
             this.Controls.Add(this.splitButtonAdd);
-            this.Controls.Add(this.splitButtonOpen);
             this.Controls.Add(this.btnRemove);
+            this.Controls.Add(this.splitButtonOpen);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.listViewItems);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(458, 200);
-            this.Name = "CreateSpace";
-            this.Text = "Create a New Workspace";
-            this.Load += new System.EventHandler(this.CreateSpace_Load);
+            this.MinimumSize = new System.Drawing.Size(564, 200);
+            this.Name = "SpaceForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,6 +168,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripOpen;
         private wyDay.Controls.SplitButton splitButtonOpen;
         private wyDay.Controls.SplitButton splitButtonAdd;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 

@@ -2,14 +2,14 @@
 // Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
 // </copyright>
 
-namespace Workspace
+namespace Workspace.Models
 {
     using System.Diagnostics;
 
     /// <summary>
     /// Represents a link item.
     /// </summary>
-    internal class Link : Item
+    public class Link : Item
     {
         private readonly int id;
         private readonly string url;
@@ -20,7 +20,7 @@ namespace Workspace
         /// <param name="url">The url.</param>
         public Link(string url)
         {
-            this.id = this.GetId();
+            this.id = GetId();
             this.url = url;
         }
 
