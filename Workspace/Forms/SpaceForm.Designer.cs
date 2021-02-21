@@ -1,4 +1,4 @@
-﻿namespace Workspace
+﻿namespace Workspace.Forms
 {
     partial class SpaceForm
     {
@@ -54,8 +54,8 @@
             // 
             // listViewItems
             // 
-            this.listViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.listViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
@@ -153,7 +153,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(564, 200);
             this.Name = "SpaceForm";
-            this.Load += new System.EventHandler(this.SpaceForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

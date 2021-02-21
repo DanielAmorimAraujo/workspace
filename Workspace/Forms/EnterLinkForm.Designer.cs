@@ -1,7 +1,7 @@
 ﻿
 namespace Workspace.Forms
 {
-    partial class EnterLink
+    partial class EnterLinkForm
     {
         /// <summary>
         /// Required designer variable.
@@ -77,7 +77,7 @@ namespace Workspace.Forms
             this.txtBoxLink.Size = new System.Drawing.Size(340, 20);
             this.txtBoxLink.TabIndex = 0;
             // 
-            // EnterLink
+            // EnterLinkForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,7 +90,7 @@ namespace Workspace.Forms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "EnterLink";
+            this.Name = "EnterLinkForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Enter Link";
             ((System.ComponentModel.ISupportInitialize)(this.errProviderLink)).EndInit();

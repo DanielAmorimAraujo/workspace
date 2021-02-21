@@ -7,6 +7,8 @@ namespace Workspace
     using System;
     using System.IO;
     using System.Windows.Forms;
+    using Workspace.Forms;
+    using Workspace.Utils;
 
     /// <summary>
     /// Entry point of the program.

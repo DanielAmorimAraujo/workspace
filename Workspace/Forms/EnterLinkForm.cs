@@ -1,4 +1,4 @@
-﻿// <copyright file="EnterLink.cs" company="github.com/DanielAmorimAraujo">
+﻿// <copyright file="EnterLinkForm.cs" company="github.com/DanielAmorimAraujo">
 // Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
 // </copyright>
 
@@ -6,18 +6,19 @@ namespace Workspace.Forms
 {
     using System;
     using System.Windows.Forms;
+    using Workspace.Models;
 
     /// <summary>
     /// Form to enter in a <see cref="Link.Url"/>.
     /// </summary>
-    public partial class EnterLink : Form
+    public partial class EnterLinkForm : Form
     {
         private string link;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EnterLink"/> class.
+        /// Initializes a new instance of the <see cref="EnterLinkForm"/> class.
         /// </summary>
-        public EnterLink()
+        public EnterLinkForm()
         {
             this.InitializeComponent();
 

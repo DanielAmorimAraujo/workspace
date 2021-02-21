@@ -2,7 +2,7 @@
 // Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
 // </copyright>
 
-namespace Workspace
+namespace Workspace.Utils
 {
     using System;
     using System.Drawing;

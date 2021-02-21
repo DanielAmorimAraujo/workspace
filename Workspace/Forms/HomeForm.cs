@@ -2,13 +2,14 @@
 // Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
 // </copyright>
 
-namespace Workspace
+namespace Workspace.Forms
 {
     using System;
     using System.Collections.Generic;
     using System.Windows.Forms;
     using Newtonsoft.Json;
-    using Workspace.Forms;
+    using Workspace.Models;
+    using Workspace.Utils;
 
     /// <summary>
     /// Form for viewing saved <see cref="Space"/>s.

@@ -6,6 +6,7 @@ namespace Workspace.Forms
 {
     using System;
     using System.Windows.Forms;
+    using Workspace.Models;
 
     /// <summary>
     /// Form to name a new <see cref="Space"/>.

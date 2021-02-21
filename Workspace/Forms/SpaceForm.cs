@@ -2,14 +2,14 @@
 // Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
 // </copyright>
 
-namespace Workspace
+namespace Workspace.Forms
 {
     using System;
     using System.Drawing;
-    using System.IO;
     using System.Windows.Forms;
     using Newtonsoft.Json;
-    using Workspace.Forms;
+    using Workspace.Models;
+    using Workspace.Utils;
 
     /// <summary>
     /// Form for viewing a <see cref="Space"/>.
@@ -55,8 +55,8 @@ namespace Workspace
             this.imageListItems.Images.Add(IconExtractor.Extract("shell32.dll", 4, true));
             this.folderImageIndex = 0;
 
-            string blankFileName = Path.Combine(Constants.LocalDataDirectory, "blank.html");
-            FileStream blankFile = System.IO.File.Create(blankFileName);
+            string blankFileName = System.IO.Path.Combine(Constants.LocalDataDirectory, "blank.html");
+            System.IO.FileStream blankFile = System.IO.File.Create(blankFileName);
             this.imageListItems.Images.Add(Icon.ExtractAssociatedIcon(blankFileName));
             this.linkImageIndex = 1;
             blankFile.Close();
@@ -89,10 +89,6 @@ namespace Workspace
         /// </summary>
         public Space ReturnSpace => this.space;
 
-        private void SpaceForm_Load(object sender, EventArgs e)
-        {
-        }
-
         private void FileToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
             if (this.fileDialog.ShowDialog() == DialogResult.OK)
@@ -115,14 +111,14 @@ namespace Workspace
 
         private void LinkToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
-            using (EnterLink formEnterLink = new EnterLink())
+            using (EnterLinkForm enterLinkForm = new EnterLinkForm())
             {
-                formEnterLink.StartPosition = FormStartPosition.CenterParent;
+                enterLinkForm.StartPosition = FormStartPosition.CenterParent;
 
-                DialogResult result = formEnterLink.ShowDialog();
+                DialogResult result = enterLinkForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    Link link = new Link(formEnterLink.ReturnLink);
+                    Link link = new Link(enterLinkForm.ReturnLink);
                     this.space.AddItem(link);
                     this.AddListViewItem(link);
                 }

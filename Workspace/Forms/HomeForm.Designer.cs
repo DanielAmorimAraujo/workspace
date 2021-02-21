@@ -1,5 +1,5 @@
 ﻿
-namespace Workspace
+namespace Workspace.Forms
 {
     partial class HomeForm
     {
@@ -38,8 +38,8 @@ namespace Workspace
             // 
             // listViewSpaces
             // 
-            this.listViewSpaces.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.listViewSpaces.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewSpaces.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});

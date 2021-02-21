@@ -2,7 +2,7 @@
 // Copyright (c) github.com/DanielAmorimAraujo. All rights reserved.
 // </copyright>
 
-namespace Workspace
+namespace Workspace.Models
 {
     /// <summary>
     /// Abstract class for any <see cref="ItemType"/>.
