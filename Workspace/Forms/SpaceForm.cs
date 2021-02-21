@@ -150,33 +150,22 @@ namespace Workspace.Forms
 
         private void FileToolStripMenuItemOpen_Click(object sender, EventArgs e)
         {
-            foreach (File file in this.space.Files)
-            {
-                file.Run();
-            }
+            this.space.Run(Item.ItemType.File);
         }
 
         private void FolderToolStripMenuItemOpen_Click(object sender, EventArgs e)
         {
-            foreach (Folder folder in this.space.Folders)
-            {
-                folder.Run();
-            }
+            this.space.Run(Item.ItemType.Folder);
         }
 
         private void LinkToolStripMenuItemOpen_Click(object sender, EventArgs e)
         {
-            foreach (Link link in this.space.Links)
-            {
-                link.Run();
-            }
+            this.space.Run(Item.ItemType.Link);
         }
 
         private void SplitButtonOpen_Click(object sender, EventArgs e)
         {
-            this.FileToolStripMenuItemOpen_Click(sender, e);
-            this.FolderToolStripMenuItemOpen_Click(sender, e);
-            this.LinkToolStripMenuItemOpen_Click(sender, e);
+            this.space.Run();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)

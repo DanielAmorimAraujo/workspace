@@ -120,5 +120,59 @@ namespace Workspace.Models
                     break;
             }
         }
+
+        /// <summary>
+        /// Runs the items in the space.
+        /// </summary>
+        /// <param name="type">Specifies the <see cref="Item"/>. If omitted, all will run.</param>
+        public void Run(Item.ItemType? type = null)
+        {
+            if (type.HasValue)
+            {
+                switch (type)
+                {
+                    case Item.ItemType.File:
+                        foreach (File file in this.files)
+                        {
+                            file.Run();
+                        }
+
+                        break;
+
+                    case Item.ItemType.Folder:
+                        foreach (Folder folder in this.folders)
+                        {
+                            folder.Run();
+                        }
+
+                        break;
+
+                    case Item.ItemType.Link:
+                        foreach (Link link in this.links)
+                        {
+                            link.Run();
+                        }
+
+                        break;
+                }
+            }
+            else
+            {
+                foreach (File file in this.files)
+                {
+                    file.Run();
+                }
+
+                foreach (Folder folder in this.folders)
+                {
+                    folder.Run();
+                }
+
+                foreach (Link link in this.links)
+                {
+                    link.Run();
+                }
+            }
+        }
     }
 }

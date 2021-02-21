@@ -35,6 +35,7 @@ namespace Workspace.Forms
 
             // event handlers
             this.listViewSpaces.SelectedIndexChanged += new EventHandler(this.ListViewSpaces_SelectedIndexChanged);
+            this.listViewSpaces.DoubleClick += new EventHandler(this.ListViewSpaces_DoubleClick);
         }
 
         /// <inheritdoc/>
@@ -104,6 +105,7 @@ namespace Workspace.Forms
                 Name = space.Name,
                 Tag = space,
             };
+
             this.listViewSpaces.Items.Add(listViewItem);
 
             this.listViewSpaces.Columns[0].Width = -1;
@@ -124,6 +126,14 @@ namespace Workspace.Forms
         private void ListViewSpaces_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.btnEdit.Enabled = this.btnRemove.Enabled = this.listViewSpaces.SelectedItems.Count > 0;
+        }
+
+        private void ListViewSpaces_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.listViewSpaces.SelectedItems.Count == 1)
+            {
+                ((Space)this.listViewSpaces.SelectedItems[0].Tag).Run();
+            }
         }
     }
 }
