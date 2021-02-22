@@ -16,24 +16,28 @@ namespace Workspace.Forms
     /// </summary>
     public partial class SpaceForm : Form
     {
+        private const int FolderImageIndex = 0;
+        private const int LinkImageIndex = 1;
         private readonly Space space;
         private readonly OpenFileDialog fileDialog = new OpenFileDialog();
         private readonly FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-        private readonly int folderImageIndex;
-        private readonly int linkImageIndex;
         private readonly ListViewGroup fileGroup = new ListViewGroup(File.GetTitle(true));
         private readonly ListViewGroup folderGroup = new ListViewGroup(Folder.GetTitle(true));
         private readonly ListViewGroup linkGroup = new ListViewGroup(Link.GetTitle(true));
+        private bool modified;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpaceForm"/> class.
         /// </summary>
         /// <param name="space">The <see cref="Space"/> being displayed.</param>
-        public SpaceForm(Space space)
+        /// <param name="fresh">If the form represents a new <see cref="Space"/>.</param>
+        public SpaceForm(Space space, bool fresh = false)
         {
             this.InitializeComponent();
 
+            // initializing values
             this.space = space;
+            this.modified = fresh;
 
             // building form
             this.Text = (!string.IsNullOrWhiteSpace(space.Name) ? space.Name : "Unnamed") + " Space";
@@ -53,14 +57,15 @@ namespace Workspace.Forms
             this.listViewItems.LargeImageList = this.imageListItems;
 
             this.imageListItems.Images.Add(IconExtractor.Extract("shell32.dll", 4, true));
-            this.folderImageIndex = 0;
 
             string blankFileName = System.IO.Path.Combine(Constants.LocalDataDirectory, "blank.html");
             System.IO.FileStream blankFile = System.IO.File.Create(blankFileName);
             this.imageListItems.Images.Add(Icon.ExtractAssociatedIcon(blankFileName));
-            this.linkImageIndex = 1;
             blankFile.Close();
             System.IO.File.Delete(blankFileName);
+
+            this.btnRemove.Enabled = false;
+            this.btnSave.Enabled = this.modified;
 
             // loading saved data
             this.space = JsonConvert.DeserializeObject<Space>(System.IO.File.ReadAllText(Constants.LocalDataPath), new JsonSerializerSettings { Error = (se, ev) => ev.ErrorContext.Handled = true, }) ?? this.space;
@@ -89,6 +94,21 @@ namespace Workspace.Forms
         /// </summary>
         public Space ReturnSpace => this.space;
 
+        /// <inheritdoc/>
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (this.modified)
+            {
+                DialogResult result = MessageBox.Show("Changes will not be saved.", "Warning", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
         private void FileToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
             if (this.fileDialog.ShowDialog() == DialogResult.OK)
@@ -96,6 +116,8 @@ namespace Workspace.Forms
                 File file = new File(this.fileDialog.FileName);
                 this.space.AddItem(file);
                 this.AddListViewItem(file);
+                this.btnSave.Enabled = true;
+                this.modified = true;
             }
         }
 
@@ -106,6 +128,8 @@ namespace Workspace.Forms
                 Folder folder = new Folder(this.folderDialog.SelectedPath);
                 this.space.AddItem(folder);
                 this.AddListViewItem(folder);
+                this.btnSave.Enabled = true;
+                this.modified = true;
             }
         }
 
@@ -121,6 +145,8 @@ namespace Workspace.Forms
                     Link link = new Link(enterLinkForm.ReturnLink);
                     this.space.AddItem(link);
                     this.AddListViewItem(link);
+                    this.btnSave.Enabled = true;
+                    this.modified = true;
                 }
             }
         }
@@ -146,6 +172,9 @@ namespace Workspace.Forms
 
                 this.RemoveListViewItem(listViewItem);
             }
+
+            this.btnSave.Enabled = true;
+            this.modified = true;
         }
 
         private void FileToolStripMenuItemOpen_Click(object sender, EventArgs e)
@@ -176,6 +205,7 @@ namespace Workspace.Forms
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            this.modified = false;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -207,7 +237,7 @@ namespace Workspace.Forms
                         Folder folder = (Folder)item;
                         ListViewItem listViewItem = new ListViewItem(folder.Path)
                         {
-                            ImageIndex = this.folderImageIndex,
+                            ImageIndex = FolderImageIndex,
                             Group = this.folderGroup,
                             Tag = folder,
                         };
@@ -221,7 +251,7 @@ namespace Workspace.Forms
                         Link link = (Link)item;
                         ListViewItem listViewItem = new ListViewItem(link.Url)
                         {
-                            ImageIndex = this.linkImageIndex,
+                            ImageIndex = LinkImageIndex,
                             Group = this.linkGroup,
                             Tag = link,
                         };

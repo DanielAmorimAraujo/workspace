@@ -81,7 +81,7 @@ namespace Workspace.Forms
                 if (result == DialogResult.OK)
                 {
                     Space space = new Space(enterNameForm.ReturnName);
-                    using (SpaceForm spaceForm = new SpaceForm(new Space(space)))
+                    using (SpaceForm spaceForm = new SpaceForm(space, true))
                     {
                         spaceForm.StartPosition = FormStartPosition.CenterParent;
 

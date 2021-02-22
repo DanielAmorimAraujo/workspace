@@ -59,7 +59,7 @@ namespace Workspace.Forms
 
         private void TxtBoxName_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Return)
+            if (e.KeyCode == Keys.Return && this.btnEnter.Enabled)
             {
                 this.BtnEnter_Click(sender, e);
             }
