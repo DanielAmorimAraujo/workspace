@@ -30,11 +30,14 @@ namespace Workspace.Forms
         /// Initializes a new instance of the <see cref="SpaceForm"/> class.
         /// </summary>
         /// <param name="space">The <see cref="Space"/> being displayed.</param>
-        public SpaceForm(Space space)
+        /// <param name="fresh">If the form represents a new <see cref="Space"/>.</param>
+        public SpaceForm(Space space, bool fresh = false)
         {
             this.InitializeComponent();
 
+            // initializing values
             this.space = space;
+            this.modified = fresh;
 
             // building form
             this.Text = (!string.IsNullOrWhiteSpace(space.Name) ? space.Name : "Unnamed") + " Space";
@@ -60,6 +63,9 @@ namespace Workspace.Forms
             this.imageListItems.Images.Add(Icon.ExtractAssociatedIcon(blankFileName));
             blankFile.Close();
             System.IO.File.Delete(blankFileName);
+
+            this.btnRemove.Enabled = false;
+            this.btnSave.Enabled = this.modified;
 
             // loading saved data
             this.space = JsonConvert.DeserializeObject<Space>(System.IO.File.ReadAllText(Constants.LocalDataPath), new JsonSerializerSettings { Error = (se, ev) => ev.ErrorContext.Handled = true, }) ?? this.space;
